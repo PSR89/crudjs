@@ -26,11 +26,18 @@ router.get("/:id", async (req, res) => {
 // Inputting/ posting the data to the database
 router.post("/", async (req, res) => {
   const DBdata = new CrudDB1({
-    name: req.body.name,
-    techinfo: req.body.techinfo,
-    subscription: req.body.subscription,
-    views: req.body.views,
-    Followers: req.body.Followers,
+    id: req.body.id,
+    first_name: req.body.first_name,
+    last_name: req.body.last_name,
+    email: req.body.email,
+    gender: req.body.gender,
+    address: req.body.address,
+    pincode: req.body.pincode,
+    language: req.body.language,
+    skills: req.body.skills,
+    dress: req.body.dress,
+    race: req.body.race,
+    occupation: req.body.occupation,
   });
   try {
     const Data1 = await DBdata.save();
@@ -45,7 +52,7 @@ router.post("/", async (req, res) => {
 router.patch("/:id", async (req, res) => {
   try {
     const DBdata = await CrudDB1.findById(req.params.id);
-    DBdata.subscription = req.body.subscription;
+    DBdata.dress = req.body.dress;
     const Data1 = await DBdata.save();
     res.json(Data1);
   } catch (err) {
